@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Performance Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080b10; --surface: #0e1318; --border: #1c2530;
+      --accent: #00e5a0; --accent2: #0084ff; --text: #e8edf2; --muted: #5a6a7a;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.85rem; padding: 2rem; }
+    header { margin-bottom: 2rem; }
+    header h1 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; }
+    header p { color: var(--muted); margin-top: 0.3rem; font-size: 0.78rem; letter-spacing: 0.05em; }
+
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .kpi {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+      padding: 1.3rem 1.5rem; position: relative; overflow: hidden;
+    }
+    .kpi::after { content: ''; position: absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .kpi-label { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .kpi-val { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .kpi-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; }
+    .kpi-sub.pos { color: #00e5a0; } .kpi-sub.neg { color: #ff4d6a; }
+
+    .charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+    .chart-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .chart-wrap { position: relative; height: 220px; }
+
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    th { text-align: left; color: var(--muted); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 0 0.7rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.6rem 0; border-bottom: 1px solid rgba(28,37,48,0.5); color: var(--muted); }
+    td:first-child { color: var(--text); }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 2px; font-size: 0.68rem; }
+    .badge.high { background: rgba(0,229,160,0.1); color: var(--accent); }
+    .badge.mid { background: rgba(0,132,255,0.1); color: var(--accent2); }
+    .badge.low { background: rgba(255,77,106,0.1); color: #ff4d6a; }
+
+    @media (max-width: 700px) { .charts-grid, .bottom-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sales Performance Dashboard</h1>
+    <p>// January – December 2024 · Auto-generated report</p>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-val">$2.4M</div>
+      <div class="kpi-sub pos">↑ 18.3% vs last year</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Orders Closed</div>
+      <div class="kpi-val">1,847</div>
+      <div class="kpi-sub pos">↑ 12.1% vs last year</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Avg. Deal Size</div>
+      <div class="kpi-val">$1,299</div>
+      <div class="kpi-sub pos">↑ 5.5% vs last year</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Win Rate</div>
+      <div class="kpi-val">34%</div>
+      <div class="kpi-sub neg">↓ 2.1% vs last year</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Churn Rate</div>
+      <div class="kpi-val">8.2%</div>
+      <div class="kpi-sub pos">↓ 1.3% vs last year</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Monthly Revenue vs Target</div>
+      <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Revenue by Region</div>
+      <div class="chart-wrap"><canvas id="regionChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="bottom-grid">
+    <div class="chart-card">
+      <div class="chart-title">Top Products by Revenue</div>
+      <div class="chart-wrap" style="height:180px"><canvas id="productChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top Sales Reps</div>
+      <table>
+        <thead><tr><th>Rep</th><th>Revenue</th><th>Deals</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td>Sarah K.</td><td>$412K</td><td>187</td><td><span class="badge high">High</span></td></tr>
+          <tr><td>James T.</td><td>$389K</td><td>162</td><td><span class="badge high">High</span></td></tr>
+          <tr><td>Priya M.</td><td>$301K</td><td>143</td><td><span class="badge mid">Mid</span></td></tr>
+          <tr><td>Carlos R.</td><td>$278K</td><td>131</td><td><span class="badge mid">Mid</span></td></tr>
+          <tr><td>Dana W.</td><td>$194K</td><td>89</td><td><span class="badge low">Low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const defaults = { color: '#5a6a7a', borderColor: '#1c2530', font: { family: 'DM Mono', size: 11 } };
+    Chart.defaults.color = defaults.color;
+    Chart.defaults.borderColor = defaults.borderColor;
+    Chart.defaults.font = defaults.font;
+
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const revenue = [148,162,175,190,210,225,185,240,255,270,262,278];
+    const target =  [160,165,170,190,200,210,215,225,240,255,260,270];
+
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'bar',
+      data: {
+        labels: months,
+        datasets: [
+          { label: 'Revenue ($K)', data: revenue, backgroundColor: 'rgba(0,229,160,0.7)', borderRadius: 2, order: 2 },
+          { label: 'Target ($K)', data: target, type: 'line', borderColor: '#0084ff', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: false, order: 1 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } } },
+        scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(28,37,48,0.8)' } } }
+      }
+    });
+
+    new Chart(document.getElementById('regionChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['West','East','South','Midwest','Intl'],
+        datasets: [{ data: [38, 27, 18, 10, 7],
+          backgroundColor: ['#00e5a0','#0084ff','#a855f7','#f59e0b','#374151'],
+          borderWidth: 0, hoverOffset: 6 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, cutout: '70%',
+        plugins: { legend: { position: 'right', labels: { padding: 14, boxWidth: 10 } } }
+      }
+    });
+
+    new Chart(document.getElementById('productChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Enterprise Suite','Analytics Pro','Starter Plan','Add-ons','Services'],
+        datasets: [{ data: [820, 640, 420, 290, 230],
+          backgroundColor: ['#00e5a0','#0084ff','#a855f7','#f59e0b','#374151'], borderRadius: 2 }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { x: { grid: { color: 'rgba(28,37,48,0.8)' } }, y: { grid: { display: false } } }
+      }
+    });
+  </script>
+</body>
+</html>

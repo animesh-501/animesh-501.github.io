@@ -1,15 +1,686 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Animesh Choubey — Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Animesh Choubey — Data Analyst & MSBA Graduate. Portfolio showcasing fraud detection, data visualization, and analytics projects." />
+  <title>Animesh Choubey | Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080b10;
+      --surface: #0e1318;
+      --border: #1c2530;
+      --accent: #00e5a0;
+      --accent2: #0084ff;
+      --text: #e8edf2;
+      --muted: #5a6a7a;
+      --card: #0d1520;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(8,11,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,132,255,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: -10%; left: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 800px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,160,0.3);
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 .highlight {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-weight: 500;
+    }
+    .btn-primary:hover { background: #00ffb3; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,229,160,0.25); }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover { border-color: rgba(0,229,160,0.2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .project-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .project-metrics {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric { display: flex; flex-direction: column; }
+    .metric-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+    .metric-label { font-size: 0.68rem; color: var(--muted); }
+
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tech-badge {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+    }
+    .project-link:hover { gap: 0.7rem; }
+    .project-link::after { content: '→'; transition: transform 0.2s; }
+    .project-link:hover::after { transform: translateX(4px); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+    .skill-group-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-list li:last-child { border-bottom: none; }
+    .skill-list li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
+    .about-text { font-size: 0.92rem; color: var(--muted); line-height: 1.9; }
+    .about-text p { margin-bottom: 1.2rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .about-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .info-label { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .info-val { font-size: 0.88rem; color: var(--text); }
+
+    /* CONTACT */
+    .contact-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      border-radius: 4px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,229,160,0.05), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-inner h3 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .contact-inner p { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .project-card.featured { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I’m Animesh 👋</h1>
-  <p>Welcome to my portfolio site.</p>
-  <p>Find me on: 
-    <a href="https://linkedin.com/in/choubey-animesh">LinkedIn</a> | 
-    <a href="https://github.com/animesh-501">GitHub</a>
-  </p>
+
+  <nav>
+    <a href="#" class="nav-logo">AC.</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="max-width:100%; padding-left: max(3rem, calc((100vw - 1100px)/2)); padding-right: max(3rem, calc((100vw - 1100px)/2));">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Available for opportunities</span>
+      <h1>Animesh<br /><span class="highlight">Choubey</span></h1>
+      <p class="hero-desc">
+        Data Analyst & MSBA graduate turning messy datasets into operational decisions.
+        I build fraud detection systems, analytics dashboards, and automation pipelines
+        that move the needle on real business outcomes.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">5×</span>
+          <span class="stat-label">Operational ROI</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$200K</span>
+          <span class="stat-label">Fraud Prevented</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">53%</span>
+          <span class="stat-label">Precision @ 2% Review</span>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://linkedin.com/in/choubey-animesh" target="_blank" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label fade-in">// work</p>
+    <h2 class="fade-in">Selected Projects</h2>
+
+    <div class="projects-grid">
+
+      <!-- FEATURED: Fraud -->
+      <div class="project-card featured fade-in">
+        <div>
+          <span class="project-tag">★ Featured · Capstone Project</span>
+          <div class="project-title">Fraud Risk Prioritization & Operational Analytics</div>
+          <p class="project-desc">
+            Built a cost-sensitive fraud scoring system that prioritizes analyst review queues using LightGBM and graph-based fraud ring detection via NetworkX.
+            Graph analysis exposed coordinated fraud rings — the fraud-neighbor ratio became the single most predictive feature.
+            118K+ transactions received plain-language explanations for analyst queues.
+          </p>
+          <div class="project-metrics">
+            <div class="metric"><span class="metric-val">0.40</span><span class="metric-label">PR-AUC</span></div>
+            <div class="metric"><span class="metric-val">53%</span><span class="metric-label">Precision@2%</span></div>
+            <div class="metric"><span class="metric-val">5×</span><span class="metric-label">ROI</span></div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">LightGBM</span>
+            <span class="tech-badge">NetworkX</span>
+            <span class="tech-badge">BigQuery</span>
+            <span class="tech-badge">scikit-learn</span>
+            <span class="tech-badge">pandas</span>
+          </div>
+          <a href="https://github.com/animesh-501/fraud-risk-prioritization-analytics" target="_blank" class="project-link">View on GitHub</a>
+        </div>
+        <div>
+          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; font-size: 0.78rem; color: var(--muted); line-height: 1.8;">
+            <div style="color:var(--accent); font-family:'Syne',sans-serif; font-weight:700; margin-bottom:1rem;">Business Impact</div>
+            <div style="display:flex; justify-content:space-between; padding: 0.5rem 0; border-bottom:1px solid var(--border);">
+              <span>Fraud prevented / month</span><span style="color:var(--text)">~$200K</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding: 0.5rem 0; border-bottom:1px solid var(--border);">
+              <span>Analyst review cost</span><span style="color:var(--text)">~$40K</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding: 0.5rem 0; border-bottom:1px solid var(--border);">
+              <span>Transaction volume</span><span style="color:var(--text)">~50K/mo</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding: 0.5rem 0;">
+              <span>Net operational ROI</span><span style="color:var(--accent); font-weight:500;">5×</span>
+            </div>
+            <div style="margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--border); color:var(--muted); font-size:0.75rem;">
+              MSBA Capstone — Cal State East Bay (2025)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Sales Dashboard -->
+      <div class="project-card fade-in">
+        <span class="project-tag">Data Visualization</span>
+        <div class="project-title">Sales Performance Dashboard</div>
+        <p class="project-desc">
+          Interactive HTML/CSS/JS dashboard visualizing sales KPIs, regional breakdowns, and monthly trends.
+          Fully self-contained — no backend required, runs in any browser.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-badge">HTML</span>
+          <span class="tech-badge">CSS</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Chart.js</span>
+        </div>
+        <a href="projects/sales-dashboard.html" class="project-link">View Project</a>
+      </div>
+
+      <!-- Project 3: CSV Analyzer -->
+      <div class="project-card fade-in">
+        <span class="project-tag">Python Automation</span>
+        <div class="project-title">Automated CSV Report Generator</div>
+        <p class="project-desc">
+          Python script that ingests any CSV, auto-detects columns, generates a statistical summary,
+          flags anomalies, and outputs a clean HTML report — zero configuration needed.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">pandas</span>
+          <span class="tech-badge">matplotlib</span>
+          <span class="tech-badge">jinja2</span>
+        </div>
+        <a href="projects/csv-analyzer.py" class="project-link">View Script</a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label fade-in">// capabilities</p>
+    <h2 class="fade-in">Skills & Tools</h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>SQL / BigQuery</li>
+          <li>HTML / CSS / JS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML & Analytics</div>
+        <ul class="skill-list">
+          <li>LightGBM / scikit-learn</li>
+          <li>pandas / NumPy</li>
+          <li>NetworkX (graph analysis)</li>
+          <li>matplotlib / seaborn</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data & BI</div>
+        <ul class="skill-list">
+          <li>Google BigQuery</li>
+          <li>Jupyter Notebooks</li>
+          <li>Chart.js / D3</li>
+          <li>Excel / Google Sheets</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Domain Knowledge</div>
+        <ul class="skill-list">
+          <li>Fraud risk modeling</li>
+          <li>Cost-sensitive ML</li>
+          <li>Operational analytics</li>
+          <li>Explainable AI (XAI)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label fade-in">// background</p>
+    <h2 class="fade-in">About Me</h2>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Data Analyst</strong> based in <strong>Hayward, CA</strong> with an MSBA from
+          California State University East Bay (2025). My work sits at the intersection of
+          machine learning, operational analytics, and business decision-making.
+        </p>
+        <p>
+          My capstone project tackled fraud detection not as a pure ML problem, but as an
+          <strong>operational prioritization challenge</strong> — asking how limited analyst time can
+          be allocated to maximize dollars recovered. That meant building cost curves, threshold
+          optimization, and plain-language explainability for real analyst workflows.
+        </p>
+        <p>
+          Outside of data work I enjoy learning how systems work — whether that's a credit card
+          network, a city's transit system, or a piece of open-source software. That curiosity
+          drives how I approach problems: understand the system first, then find the leverage point.
+        </p>
+      </div>
+      <div class="about-sidebar">
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Hayward, CA</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Education</span>
+          <span class="info-val">MSBA — Cal State East Bay, 2025</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Focus</span>
+          <span class="info-val">Fraud detection · Operational analytics · ML</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <span class="info-val" style="color:var(--accent);">Open to opportunities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner fade-in">
+      <h3>Let's work together</h3>
+      <p>I'm actively looking for data analyst / analytics engineer roles.<br />Reach out on LinkedIn or explore my work on GitHub.</p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/choubey-animesh" target="_blank" class="btn btn-primary">LinkedIn</a>
+        <a href="https://github.com/animesh-501" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 Animesh Choubey</span>
+    <span>Built with HTML · Hosted on GitHub Pages</span>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

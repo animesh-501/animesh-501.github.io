@@ -1,6 +1,6 @@
 # animesh-501.github.io — Personal Portfolio
 
-> Portfolio site for **Animesh Choubey** — Data Analyst & MSBA Graduate  
+> Portfolio site for **Animesh Choubey** — "Business Analyst · Revenue & GTM Analytics"  
 > Live at: [animesh-501.github.io](https://animesh-501.github.io)
 
 ---

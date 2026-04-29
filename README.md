@@ -1,63 +1,48 @@
-# animesh-501.github.io — Personal Portfolio
+# animesh-501.github.io
 
-> Portfolio site for **Animesh Choubey** — "Business Analyst · Revenue & GTM Analytics"  
-> Live at: [animesh-501.github.io](https://animesh-501.github.io)
+**Business Analyst | Revenue & GTM Analytics | 5+ Years of Experience**
 
----
-
-## About
-
-This repo powers my personal portfolio site, built with plain HTML/CSS/JS and hosted on GitHub Pages. No frameworks, no build step — just fast, clean, and fully static.
+Analytics-first portfolio focused on revenue growth, churn reduction, GTM performance, and business decision support.
 
 ---
 
-## Projects
+## Business Objective
+Define the business problem this project solves and why it matters.
 
-### ★ Fraud Risk Prioritization & Operational Analytics
-> [`fraud-risk-prioritization-analytics`](https://github.com/animesh-501/fraud-risk-prioritization-analytics)
+## Dataset / Inputs
+- Data source(s):
+- Time range:
+- Granularity:
+- Key assumptions:
 
-MSBA Capstone project. Built a cost-sensitive fraud scoring system using LightGBM and graph-based fraud ring detection (NetworkX). Delivered 5× operational ROI at ~50K transactions/month.
+## Approach
+1. Data preparation
+2. Exploratory analysis
+3. Modeling / analytical method
+4. Validation and interpretation
 
-**Stack:** Python · LightGBM · NetworkX · BigQuery · scikit-learn · pandas
+## Results & Impact
+- Key findings:
+- KPI movement / expected impact:
+- Business recommendation:
 
----
+## Tech Stack
+- SQL / Python / BI tools used in this project
 
-### Sales Performance Dashboard
-> [`projects/sales-dashboard.html`](https://animesh-501.github.io/projects/sales-dashboard.html)
-
-Standalone interactive dashboard visualizing sales KPIs, regional breakdowns, and monthly revenue vs target. No backend — runs entirely in the browser.
-
-**Stack:** HTML · CSS · JavaScript · Chart.js
-
----
-
-### Automated CSV Report Generator
-> [`projects/csv_analyzer.py`](https://github.com/animesh-501/animesh-501.github.io/blob/main/projects/csv_analyzer.py)
-
-Drop any CSV in, get a clean HTML report back. Auto-detects column types, computes summary stats, flags anomalies via Z-score, and highlights missing data.
-
-```bash
-python csv_analyzer.py your_file.csv
+## Repository Structure
+```
+.
+├── data/
+├── notebooks/
+├── src/
+└── README.md
 ```
 
-**Stack:** Python · pandas · NumPy
-
----
-
-## Tech
-
-- Pure HTML / CSS / JavaScript
-- Hosted on GitHub Pages
-- Google Fonts (Syne + DM Mono)
-- Chart.js for dashboard visualizations
-
----
+## How to Run
+1. Clone repository
+2. Install dependencies
+3. Run analysis / notebook
 
 ## Contact
-
-- LinkedIn: [linkedin.com/in/choubey-animesh](https://linkedin.com/in/choubey-animesh)
-- GitHub: [github.com/animesh-501](https://github.com/animesh-501)
-
----
-
-*MSBA — California State University East Bay, 2025*
+- LinkedIn: https://linkedin.com/in/choubey-animesh
+- Portfolio: https://animesh-501.github.io

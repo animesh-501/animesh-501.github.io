@@ -859,6 +859,84 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
+    /* EXPERIENCE */
+    #experience { background: var(--bg); }
+
+    .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      transition: background 0.2s;
+    }
+
+    .exp-left { padding-right: 2rem; border-right: 1px solid var(--border); }
+
+    .exp-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .exp-sep { color: var(--muted); margin: 0 0.3rem; }
+
+    .exp-company {
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-period {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .exp-tag {
+      font-size: 0.58rem;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border-bright);
+      color: var(--muted);
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+
+    .exp-right { padding-top: 0.2rem; }
+
+    .exp-bullet {
+      font-size: 0.8rem;
+      color: rgba(240,242,245,0.45);
+      line-height: 1.9;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      padding-left: 1rem;
+    }
+    .exp-bullet:last-child { border-bottom: none; }
+    .exp-bullet::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.6rem;
+      top: 0.85rem;
+    }
+    .exp-bullet strong { color: var(--accent); font-weight: 400; }
+
+    .exp-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
@@ -872,6 +950,8 @@
       .featured-right { border-top: 1px solid var(--border); }
       .skills-layout { grid-template-columns: 1fr; }
       .about-layout { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 1.5rem; }
+      .exp-left { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 1rem; }
       .contact-wrap { padding: 5rem 1.5rem; }
       footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
@@ -889,6 +969,7 @@
       <ul class="nav-links">
         <li><a href="#projects">Work</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1137,11 +1218,107 @@
 
   <div class="full-divider"></div>
 
+  <!-- EXPERIENCE -->
+  <div id="experience">
+    <div class="section">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Experience</h2>
+        <span class="section-sub">Where the work happened</span>
+      </div>
+
+      <div class="exp-timeline reveal">
+
+        <div class="exp-item">
+          <div class="exp-left">
+            <div class="exp-role">Growth Analyst <span class="exp-sep">/</span> Business Analyst</div>
+            <div class="exp-company">Duonomic Digital Innovations</div>
+            <div class="exp-period">Aug 2023 — Aug 2024</div>
+            <div class="exp-tags">
+              <span class="exp-tag">AI-SaaS</span>
+              <span class="exp-tag">EdTech</span>
+              <span class="exp-tag">Agile</span>
+            </div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-bullet">Led two-phase UAT for an AI-powered learning platform — triaged 500+ beta user submissions, coordinated prioritized defect resolution across 12+ sprints before each production deployment.</div>
+            <div class="exp-bullet">Accelerated GTM by <strong>3 months</strong> via Python-based price elasticity analysis, translating findings into functional specs that aligned engineering delivery with validated revenue projections.</div>
+            <div class="exp-bullet">Extended operational runway by <strong>6 months</strong> by identifying COGS risk exceeding industry benchmarks through Tableau scenario planning, resetting MRR targets before launch.</div>
+            <div class="exp-bullet">Boosted Day-7 retention <strong>20%</strong> across 500+ beta users via SQL cohort analysis and Zoho Zia funnel diagnostics across 5K–10K event-level data points.</div>
+          </div>
+        </div>
+
+        <div class="exp-divider"></div>
+
+        <div class="exp-item">
+          <div class="exp-left">
+            <div class="exp-role">Senior Associate, Presales Consultant</div>
+            <div class="exp-company">Skill-Lync</div>
+            <div class="exp-period">Sep 2021 — Aug 2023</div>
+            <div class="exp-tags">
+              <span class="exp-tag">EdTech</span>
+              <span class="exp-tag">CRM</span>
+              <span class="exp-tag">Revenue Ops</span>
+            </div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-bullet">Built SQL-driven scoring and prioritization logic in LeadSquared CRM across <strong>80,000+ records</strong>, shifting to a highest-value-first model that drove <strong>$250K+ in revenue</strong> and 150% of annual target.</div>
+            <div class="exp-bullet">Developed Holt-Winters forecasting in Excel across a 60-member team, securing buy-in for a rep-matched routing model that drove <strong>12% lift in lead-to-opportunity conversion</strong>.</div>
+            <div class="exp-bullet">Identified Post-Grad segments as highest CAC-to-LTV cohort via weighted attribution in LeadSquared, shifting 20% of budget away from low-intent social toward high-conversion search and webinar leads.</div>
+            <div class="exp-bullet">Validated lead scoring through 14-day sequential tests — proved webinar attendance was a <strong>3x stronger</strong> purchase-intent signal than content downloads.</div>
+          </div>
+        </div>
+
+        <div class="exp-divider"></div>
+
+        <div class="exp-item">
+          <div class="exp-left">
+            <div class="exp-role">Account Manager, Enterprise Business</div>
+            <div class="exp-company">Airtel (via Denave)</div>
+            <div class="exp-period">Feb 2020 — Jul 2021</div>
+            <div class="exp-tags">
+              <span class="exp-tag">Telecom</span>
+              <span class="exp-tag">Enterprise</span>
+              <span class="exp-tag">Power BI</span>
+            </div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-bullet">Built SQL-driven risk profiling framework in Oracle CRM across 50+ enterprise accounts, translating behavioral signals into a Power BI dashboard that protected <strong>$400K+ in annual revenue</strong>.</div>
+            <div class="exp-bullet">Recovered <strong>$200K in stagnant revenue</strong> by identifying enterprise accounts approaching plan capacity through Power BI whitespace analysis, surfacing upgrade opportunities invisible in fragmented reporting.</div>
+            <div class="exp-bullet">Prevented service disruption across 8 at-risk accounts by identifying copper line degradation through Power BI trend analysis, triggering proactive fiber migrations before billing impact.</div>
+            <div class="exp-bullet">Eliminated <strong>12 hours/week</strong> of manual reporting by unifying billing, usage, and CRM data into a single automated workflow via Power Query and Excel macros.</div>
+          </div>
+        </div>
+
+        <div class="exp-divider"></div>
+
+        <div class="exp-item">
+          <div class="exp-left">
+            <div class="exp-role">Application Development Associate</div>
+            <div class="exp-company">Accenture</div>
+            <div class="exp-period">Jul 2019 — Nov 2019</div>
+            <div class="exp-tags">
+              <span class="exp-tag">SQL</span>
+              <span class="exp-tag">Waterfall</span>
+              <span class="exp-tag">Data Quality</span>
+            </div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-bullet">Supported enterprise data quality validation — profiling datasets for duplicates, missing values, and schema errors using SQL within a global Waterfall SDLC delivery environment.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="full-divider"></div>
+
   <!-- ABOUT -->
   <div id="about" style="background:var(--surface);">
     <div class="section">
       <div class="section-header reveal">
-        <span class="section-num">03</span>
+        <span class="section-num">04</span>
         <h2 class="section-title">About</h2>
         <span class="section-sub">The person behind the data</span>
       </div>

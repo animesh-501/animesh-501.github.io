@@ -1424,17 +1424,24 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // COUNT UP
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const target = parseInt(el.dataset.count);
-      let current = 0;
-      const step = target / 40;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.round(current) + '+';
-        if (current >= target) clearInterval(timer);
-      }, 40);
-    });
+    
+  // COUNT UP — triggers on scroll into view
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count);
+    let current = 0;
+    const step = target / 40;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.round(current) + '+';
+      if (current >= target) clearInterval(timer);
+    }, 40);
+    countObs.unobserve(el);
+  });
+});
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
 
     // SKILLS TABS
     document.querySelectorAll('.domain-btn').forEach(btn => {

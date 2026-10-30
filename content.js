@@ -30,7 +30,7 @@ const FOCUS = {
     projectOrder: ['demand-forecast', 'otif', 'procurement', 'inventory'],
     skillsPanel: 'domain',
     stats: [
-      { num: 5, suffix: '+', label: 'Years in Analytics' },
+      { num: 6, suffix: '+', label: 'Years in Analytics' },
       { text: '32%', label: 'Less Stock, Same Service' },
       { text: '$24M+', label: 'Price Variance Found' },
     ],

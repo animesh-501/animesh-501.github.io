@@ -1008,10 +1008,6 @@
           <strong data-profile="education"></strong>
         </div>
         <div class="hero-meta-item">
-          <span>Work Auth</span>
-          <strong style="color:var(--green)" data-profile="workAuth"></strong>
-        </div>
-        <div class="hero-meta-item">
           <span>Focus</span>
           <strong id="hero-focus"></strong>
         </div>
@@ -1074,7 +1070,7 @@
           <div class="skills-panel" id="panel-ml">
             <div class="skills-panel-title">ML & Analytics</div>
             <div class="skill-items">
-              <div class="skill-item"><span class="skill-dot"></span>Demand forecasting (LightGBM, Prophet)</div>
+              <div class="skill-item"><span class="skill-dot"></span>Demand forecasting (LightGBM, baselines)</div>
               <div class="skill-item"><span class="skill-dot"></span>Inventory simulation &amp; backtesting</div>
               <div class="skill-item"><span class="skill-dot"></span>Hypothesis testing (chi-square, effect size)</div>
               <div class="skill-item"><span class="skill-dot"></span>scikit-learn / classification</div>
@@ -1083,8 +1079,7 @@
           <div class="skills-panel" id="panel-bi">
             <div class="skills-panel-title">Data & BI</div>
             <div class="skill-items">
-              <div class="skill-item"><span class="skill-dot"></span>DuckDB / BigQuery</div>
-              <div class="skill-item"><span class="skill-dot"></span>Power BI / Tableau</div>
+              <div class="skill-item"><span class="skill-dot"></span>SQL (DuckDB)</div>
               <div class="skill-item"><span class="skill-dot"></span>Excel (Power Query, forecasting)</div>
               <div class="skill-item"><span class="skill-dot"></span>matplotlib</div>
             </div>
@@ -1117,7 +1112,7 @@
       <div class="about-layout">
         <div class="about-body reveal">
           <h3 class="about-headline">
-            I start with the<br /><em>decision,</em><br />not the data.
+            I start with the<br /><em>decision</em><br />it has to support.
           </h3>
           <div class="about-copy">
             <p>
@@ -1126,13 +1121,12 @@
               how much to hold, where deliveries break down, and where spend is leaking.
             </p>
             <p>
-              In <strong>6+ years</strong> of work I've built the forecasts, SQL pipelines
-              and dashboards that operations teams run on. My recent work is in supply chain:
-              forecasting and safety stock, OTIF root-cause analysis, supplier scorecards and
-              inventory policy.
+              I've worked in supply chain since 2019, across procurement, manufacturing planning
+              and demand and inventory analytics. The projects here cover forecasting and safety
+              stock, OTIF root-cause analysis, supplier scorecards and inventory policy.
             </p>
             <p>
-              Every project here ends in a decision, not just a model — and two of them say plainly
+              Every project here ends with a recommendation a planner could act on, and two of them say plainly
               that the fancy approach didn't beat the simple one. The question I always start with:
               <em>what decision does this need to support?</em>
             </p>
@@ -1151,10 +1145,6 @@
           <div class="info-card">
             <div class="info-card-label">Target Roles</div>
             <div class="info-card-val">Supply Chain Analyst · Demand / Inventory Planning · Procurement Analyst · Operations Analyst</div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-label">Work Authorization</div>
-            <div class="info-card-val highlight"><span data-profile="workAuth"></span> · Open to opportunities</div>
           </div>
           <div class="info-card">
             <div class="info-card-label">Contact</div>
@@ -1219,7 +1209,7 @@
 
       $('hero-tagline').textContent = F.tagline;
       $('hero-focus').textContent = F.focusLabel;
-      $('contact-line').textContent = F.contactLine + ' ' + PROFILE.workAuth + '.';
+      $('contact-line').textContent = F.contactLine;
       $('hero-stats').innerHTML = F.stats.map(st => `
         <div class="stat-card">
           <div class="stat-num"${st.num != null ? ` data-count="${st.num}"` : ''}>${st.num != null ? '0' : st.text}</div>

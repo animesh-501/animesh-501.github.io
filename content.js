@@ -14,7 +14,6 @@
 const PROFILE = {
   name: 'Animesh Choubey',
   education: 'MSBA · Cal State East Bay',
-  workAuth: 'OPT Available',
   email: 'animeshkchoubey@gmail.com',
 };
 
@@ -82,7 +81,7 @@ const PROJECTS = {
   procurement: {
     title: 'Procurement Spend &amp; Supplier Scorecard',
     badge: 'Procurement',
-    desc: '$1.63B of purchases benchmarked line by line against each item\'s median price: $24–35M paid above it. A third of that sits with 5 vendors holding 8% of spend. The two largest suppliers price at the median but deliver only 86–87% on time — a performance conversation, not a price one.',
+    desc: '$1.63B of purchases benchmarked line by line against each item\'s median price: $24–35M paid above it. A third of that sits with 5 vendors holding 8% of spend. The two largest suppliers price at the median but deliver only 86–87% on time, so the fix there is delivery performance.',
     metrics: [
       ['$24–35M', 'Above-benchmark spend'],
       ['24', 'Suppliers scored'],

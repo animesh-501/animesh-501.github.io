@@ -13,7 +13,6 @@
 
 const PROFILE = {
   name: 'Animesh Choubey',
-  location: 'Dallas, TX',
   education: 'MSBA · Cal State East Bay',
   workAuth: 'OPT Available',
   email: 'animeshkchoubey@gmail.com',
@@ -30,7 +29,7 @@ const FOCUS = {
     projectOrder: ['demand-forecast', 'otif', 'procurement', 'inventory'],
     skillsPanel: 'domain',
     stats: [
-      { num: 6, suffix: '', label: 'Years of Experience' },
+      { text: '6+', label: 'Years of Experience' },
       { text: '32%', label: 'Less Stock, Same Service' },
       { text: '$24M+', label: 'Price Variance Found' },
     ],

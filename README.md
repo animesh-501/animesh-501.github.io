@@ -5,7 +5,7 @@ Portfolio site: **[animesh-501.github.io](https://animesh-501.github.io)**
 
 ---
 
-6+ years in analytics, now focused on supply chain: how much stock to hold, where deliveries break down, and where spend leaks. Every project below ends in a decision, and each one is backtested on real data before it recommends anything.
+6 years of experience, now focused on supply chain: how much stock to hold, where deliveries break down, and where spend leaks. Every project below ends in a decision, and each one is backtested on real data before it recommends anything.
 
 ### Projects
 | Project | What it found |
